@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements ActionListener{
     Timer timer ;
     Random random ;
     Clip clip;
+    Color headColor; //should have been named bodyColor but it is what it is 
     //Image headImage; //image variable  
     //private boolean isSoundPlaying = false;
     GamePanel(){
@@ -71,7 +72,8 @@ public class GamePanel extends JPanel implements ActionListener{
             }
             else 
             {
-                g.setColor(new Color(45,100,0));
+                g.setColor(new Color(45,100,0));//original code
+                g.setColor(headColor); //for changing the body color whenever the snake eats a apple
                 g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE); 
             }
         }
@@ -122,7 +124,7 @@ public class GamePanel extends JPanel implements ActionListener{
 			bodyParts++;
 			applesEaten++;
 			newApple();
-            
+            headColor = new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256));//to randomly change the body color
             
             playBackgroundMusic("src/snake-eats.wav");
 		}
